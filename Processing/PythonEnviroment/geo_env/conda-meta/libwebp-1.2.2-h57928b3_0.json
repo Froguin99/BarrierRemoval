@@ -1,0 +1,35 @@
+{
+  "arch": "x86_64",
+  "build": "h57928b3_0",
+  "build_number": 0,
+  "channel": "https://conda.anaconda.org/conda-forge/win-64",
+  "constrains": [],
+  "depends": [
+    "libwebp-base 1.2.2.*"
+  ],
+  "extracted_package_dir": "C:\\Anaconda3\\pkgs\\libwebp-1.2.2-h57928b3_0",
+  "features": "",
+  "files": [],
+  "fn": "libwebp-1.2.2-h57928b3_0.tar.bz2",
+  "license": "BSD-3-Clause",
+  "license_family": "BSD",
+  "link": {
+    "source": "C:\\Anaconda3\\pkgs\\libwebp-1.2.2-h57928b3_0",
+    "type": 1
+  },
+  "md5": "80c0ce63cf8f69c5a5781ab7a9645942",
+  "name": "libwebp",
+  "package_tarball_full_path": "C:\\Anaconda3\\pkgs\\libwebp-1.2.2-h57928b3_0.tar.bz2",
+  "paths_data": {
+    "paths": [],
+    "paths_version": 1
+  },
+  "platform": "win32",
+  "requested_spec": "None",
+  "size": 11686,
+  "subdir": "win-64",
+  "timestamp": 1643047098748,
+  "track_features": "",
+  "url": "https://conda.anaconda.org/conda-forge/win-64/libwebp-1.2.2-h57928b3_0.tar.bz2",
+  "version": "1.2.2"
+}

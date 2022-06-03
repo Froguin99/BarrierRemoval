@@ -1,0 +1,112 @@
+{
+  "arch": "x86_64",
+  "build": "py37hcc03f2d_0",
+  "build_number": 0,
+  "channel": "https://conda.anaconda.org/conda-forge/win-64",
+  "constrains": [],
+  "depends": [
+    "python >=3.7,<3.8.0a0",
+    "python_abi 3.7.* *_cp37m",
+    "vc >=14.1,<15.0a0",
+    "vs2015_runtime >=14.16.27012"
+  ],
+  "extracted_package_dir": "C:\\Anaconda3\\pkgs\\unicodedata2-14.0.0-py37hcc03f2d_0",
+  "features": "",
+  "files": [
+    "Lib/site-packages/unicodedata2-14.0.0.dist-info/INSTALLER",
+    "Lib/site-packages/unicodedata2-14.0.0.dist-info/LICENSE",
+    "Lib/site-packages/unicodedata2-14.0.0.dist-info/METADATA",
+    "Lib/site-packages/unicodedata2-14.0.0.dist-info/RECORD",
+    "Lib/site-packages/unicodedata2-14.0.0.dist-info/REQUESTED",
+    "Lib/site-packages/unicodedata2-14.0.0.dist-info/WHEEL",
+    "Lib/site-packages/unicodedata2-14.0.0.dist-info/direct_url.json",
+    "Lib/site-packages/unicodedata2-14.0.0.dist-info/top_level.txt",
+    "Lib/site-packages/unicodedata2.cp37-win_amd64.pyd"
+  ],
+  "fn": "unicodedata2-14.0.0-py37hcc03f2d_0.tar.bz2",
+  "license": "Apache-2.0",
+  "license_family": "Apache",
+  "link": {
+    "source": "C:\\Anaconda3\\pkgs\\unicodedata2-14.0.0-py37hcc03f2d_0",
+    "type": 1
+  },
+  "md5": "8230694be6a679bac047ba4a1e174031",
+  "name": "unicodedata2",
+  "package_tarball_full_path": "C:\\Anaconda3\\pkgs\\unicodedata2-14.0.0-py37hcc03f2d_0.tar.bz2",
+  "paths_data": {
+    "paths": [
+      {
+        "_path": "Lib/site-packages/unicodedata2-14.0.0.dist-info/INSTALLER",
+        "path_type": "hardlink",
+        "sha256": "d0edee15f91b406f3f99726e44eb990be6e34fd0345b52b910c568e0eef6a2a8",
+        "sha256_in_prefix": "d0edee15f91b406f3f99726e44eb990be6e34fd0345b52b910c568e0eef6a2a8",
+        "size_in_bytes": 5
+      },
+      {
+        "_path": "Lib/site-packages/unicodedata2-14.0.0.dist-info/LICENSE",
+        "path_type": "hardlink",
+        "sha256": "cb5e8e7e5f4a3988e1063c142c60dc2df75605f4c46515e776e3aca6df976e14",
+        "sha256_in_prefix": "cb5e8e7e5f4a3988e1063c142c60dc2df75605f4c46515e776e3aca6df976e14",
+        "size_in_bytes": 11325
+      },
+      {
+        "_path": "Lib/site-packages/unicodedata2-14.0.0.dist-info/METADATA",
+        "path_type": "hardlink",
+        "sha256": "45868470300f208fc6a32dabad73d564e47e98f9ceb98dbd76408a10dea32201",
+        "sha256_in_prefix": "45868470300f208fc6a32dabad73d564e47e98f9ceb98dbd76408a10dea32201",
+        "size_in_bytes": 2972
+      },
+      {
+        "_path": "Lib/site-packages/unicodedata2-14.0.0.dist-info/RECORD",
+        "path_type": "hardlink",
+        "sha256": "51e456a09ad8019f4028ca3dc02b282b9f00f7561cbe8c10f50b8194971c30f6",
+        "sha256_in_prefix": "51e456a09ad8019f4028ca3dc02b282b9f00f7561cbe8c10f50b8194971c30f6",
+        "size_in_bytes": 804
+      },
+      {
+        "_path": "Lib/site-packages/unicodedata2-14.0.0.dist-info/REQUESTED",
+        "path_type": "hardlink",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "sha256_in_prefix": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size_in_bytes": 0
+      },
+      {
+        "_path": "Lib/site-packages/unicodedata2-14.0.0.dist-info/WHEEL",
+        "path_type": "hardlink",
+        "sha256": "3a60ca0f726666384cbbf61da648890df14bd6b7fc9fd9dec615821a14811951",
+        "sha256_in_prefix": "3a60ca0f726666384cbbf61da648890df14bd6b7fc9fd9dec615821a14811951",
+        "size_in_bytes": 101
+      },
+      {
+        "_path": "Lib/site-packages/unicodedata2-14.0.0.dist-info/direct_url.json",
+        "path_type": "hardlink",
+        "sha256": "e8996ebe280acb435926b8c586f35caa11a84e9568d46b09044689acef8e3dd0",
+        "sha256_in_prefix": "e8996ebe280acb435926b8c586f35caa11a84e9568d46b09044689acef8e3dd0",
+        "size_in_bytes": 73
+      },
+      {
+        "_path": "Lib/site-packages/unicodedata2-14.0.0.dist-info/top_level.txt",
+        "path_type": "hardlink",
+        "sha256": "2efe3a3c550aa72f5a669a41449f07023f185c6a2da7d9c8bff8b9c93cb523d7",
+        "sha256_in_prefix": "2efe3a3c550aa72f5a669a41449f07023f185c6a2da7d9c8bff8b9c93cb523d7",
+        "size_in_bytes": 13
+      },
+      {
+        "_path": "Lib/site-packages/unicodedata2.cp37-win_amd64.pyd",
+        "path_type": "hardlink",
+        "sha256": "c18ec31e40e83fd7a4b9b0730b1c4745b3309fa5e58b0e6c1121214ffd2d543b",
+        "sha256_in_prefix": "c18ec31e40e83fd7a4b9b0730b1c4745b3309fa5e58b0e6c1121214ffd2d543b",
+        "size_in_bytes": 1239552
+      }
+    ],
+    "paths_version": 1
+  },
+  "platform": "win32",
+  "requested_spec": "None",
+  "size": 509573,
+  "subdir": "win-64",
+  "timestamp": 1640031800011,
+  "track_features": "",
+  "url": "https://conda.anaconda.org/conda-forge/win-64/unicodedata2-14.0.0-py37hcc03f2d_0.tar.bz2",
+  "version": "14.0.0"
+}
