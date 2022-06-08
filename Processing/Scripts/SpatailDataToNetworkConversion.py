@@ -126,7 +126,12 @@ destinations_df = pd.DataFrame(destinations)
 import itertools
 OD_pairs = list(itertools.product(origins,destinations))
 
-
+# split into two dataframes
+OD_pairs_df = pd.DataFrame(OD_pairs, columns =['Origins', 'Destinations'])
+OD_Origins = OD_pairs_df['Origins']
+OD_Destinations = OD_pairs_df['Destinations']
+OD_Origins_Arrary = OD_Origins.to_numpy()
+OD_Destinations_Arrary = OD_Destinations.to_numpy()
 
 
 #%%
@@ -137,9 +142,9 @@ routes = []
 distances = []
 
 for a,b in OD_pairs:
-    route = net.shortest_paths(a, b)
+    route = net.shortest_paths(OD_Origins_Arrary,OD_Destinations_Arrary)
     routes.append(route)
-    distance = net.shortest_path_lengths(a, b, imp_name='Shape_Leng')
+    distance = net.shortest_path_lengths(OD_Origins_Arrary,OD_Destinations_Arrary, imp_name='Shape_Leng')
     distances.append(distance)
 
 
