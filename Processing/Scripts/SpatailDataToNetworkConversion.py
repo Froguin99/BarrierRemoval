@@ -26,6 +26,14 @@ barriers = gpd.read_file(r"C:\Users\b8008458\Documents\2021_2022\Scratch Space\F
 
 network_edges = gpd.read_file(r"C:\Users\b8008458\Documents\2021_2022\Scratch Space\NetworkTesting\NCNReprojectedAndCleanedClip.shp")
 
+
+# Import OD Matrix from QGIS
+
+QGIS_OD_Matrix = gpd.read_file(r"C:\Users\b8008458\Documents\2021_2022\Scratch Space\NetworkTesting\ODMatrix.shp")
+
+
+
+
 #%%
 
 # plot network
@@ -144,22 +152,36 @@ distances = []
 for a,b in OD_pairs:
     route = net.shortest_paths(OD_Origins_Arrary,OD_Destinations_Arrary)
     routes.append(route)
-    distance = net.shortest_path_lengths(OD_Origins_Arrary,OD_Destinations_Arrary, imp_name='Shape_Leng')
-    distances.append(distance)
 
 
 
 
 
 #%%
+
+route_df = pd.DataFrame({'Routes':route})
+
+
+OD_Route_df = route_df.join(OD_pairs_df)
+
+
+#%%
+
+joined_OD_Matrix = QGIS_OD_Matrix.join(OD_Route_df)
+
+#%%
+
+counter = 0
+print(joined_OD_Matrix['Routes'].str[-1])
+
+for x in joined_OD_Matrix['origin_id']:
+    print("Hello world")    
+    
+
+    
+
+
 
 # ALL CODE BEYOND THIS POINT IS STILL VERY MUCH A WORK IN PROGRESS
 
-edges['edge_pairs'] = edges['node_start'].astype(str) + ',' + edges['node_end'].astype(str)
-
-
-#%%
-
-if routes['Value'].str[0] == edges['node_start']:
-    if routes['Value'].str[last value in arrary]:
-        edges['route'] = routes['value']
+#edges['edge_pairs'] = edges['node_start'].astype(str) + ',' + edges['node_end'].astype(str)
