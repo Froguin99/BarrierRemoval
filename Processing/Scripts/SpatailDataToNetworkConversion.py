@@ -19,16 +19,22 @@ import matplotlib.pyplot as plt
 
 # Import barriers 
 
+
+# data can be found under ...Github\BarrierRemoval\Data\Test Data\Python\FullBarrierLayer.shp
 barriers = gpd.read_file(r"C:\Users\b8008458\Documents\2021_2022\Scratch Space\FullBarrierLayer.shp")
 
 
 # Import network
 
+
+# data can be found under ...Github\BarrierRemoval\Data\Test Data\Python\NCNReprojectedAndCleanedClip.shp
 network_edges = gpd.read_file(r"C:\Users\b8008458\Documents\2021_2022\Scratch Space\NetworkTesting\NCNReprojectedAndCleanedClip.shp")
 
 
 # Import OD Matrix from QGIS
 
+
+# data can be found under ...Github\BarrierRemoval\Data\Test Data\Python\ODMatrix.shp
 QGIS_OD_Matrix = gpd.read_file(r"C:\Users\b8008458\Documents\2021_2022\Scratch Space\NetworkTesting\ODMatrix.shp")
 
 
@@ -153,10 +159,6 @@ for a,b in OD_pairs:
     route = net.shortest_paths(OD_Origins_Arrary,OD_Destinations_Arrary)
     routes.append(route)
 
-
-
-
-
 #%%
 
 route_df = pd.DataFrame({'Routes':route})
@@ -174,8 +176,13 @@ joined_OD_Matrix = QGIS_OD_Matrix.join(OD_Route_df)
 counter = 0
 print(joined_OD_Matrix['Routes'].str[-1])
 
-for x in joined_OD_Matrix['origin_id']:
-    print("Hello world")    
+for x in joined_OD_Matrix.groupby('origin_id'):
+    lastNode = joined_OD_Matrix['Routes'].str[-1]
+    # if lastNode == nodeinnextroute:
+     #   remove row
+    # elif lastNode == lastNode:
+     #   compare network distance
+     #   remove row
     
 
     
