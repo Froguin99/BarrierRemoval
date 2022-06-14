@@ -173,6 +173,20 @@ joined_OD_Matrix = QGIS_OD_Matrix.join(OD_Route_df)
 
 #%%
 
+# ALL CODE BEYOND THIS POINT IS STILL VERY MUCH A WORK IN PROGRESS
+
+# planned method follows this format:
+
+# for each startID:
+    # if lastNode in routes from joined_OD_Matrix = anyOtherNode in routes from joined_OD_Matrix per startID:
+        # remove row
+    # elseif lastNode in routes from joined_OD_Matrix = lastNode in routes from joined_OD_Matrix per startID:
+        # compare distances from ['total_cost'] column
+        # remove row with larger distance
+
+
+
+
 counter = 0
 print(joined_OD_Matrix['Routes'].str[-1])
 
@@ -189,6 +203,6 @@ for x in joined_OD_Matrix.groupby('origin_id'):
 
 
 
-# ALL CODE BEYOND THIS POINT IS STILL VERY MUCH A WORK IN PROGRESS
 
-#edges['edge_pairs'] = edges['node_start'].astype(str) + ',' + edges['node_end'].astype(str)
+
+
