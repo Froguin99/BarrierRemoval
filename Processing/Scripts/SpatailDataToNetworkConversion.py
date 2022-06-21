@@ -188,10 +188,13 @@ joined_OD_Matrix = QGIS_OD_Matrix.join(OD_Route_df)
 
 
 counter = 0
-print(joined_OD_Matrix['Routes'].str[-1])
+#print(joined_OD_Matrix['Routes'].str[-1])
+
+
 
 for x in joined_OD_Matrix.groupby('origin_id'):
-    lastNode = joined_OD_Matrix['Routes'].str[-1]
+    lastNode = joined_OD_Matrix['Destinations']
+    
     # if lastNode == nodeinnextroute:
      #   remove row
     # elif lastNode == lastNode:
