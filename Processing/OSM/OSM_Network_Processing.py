@@ -14,15 +14,12 @@ bike_graph = ox.graph_from_place('Newcastle, United Kingdom', network_type="bike
 
 ox.save_graph_geopackage(bike_graph, filepath=(r'C:\Users\b8008458\Documents\2021_2022\Scratch Space\BikeNetwork\bike_network.shp'))
 
-
 #%%
 #edges = gpd.read_file(r'C:\Users\b8008458\Documents\2021_2022\Scratch Space\BikeNetwork\bike_network.shp')
-
 
 edges = ox.graph_to_gdfs(ox.get_undirected(bike_graph), nodes=False, edges=True, node_geometry=False, fill_edge_geometry=True)
 edges.drop(["ref","name","maxspeed","lanes","service","bridge","tunnel","access","junction","width","area","est_width", "osmid"], axis=1, inplace=True)
 edges['highway'] = edges['highway'].str.replace("'"," ")
-
 
 #%%
 edges['cost'] = edges['length']

@@ -110,41 +110,6 @@ OD_pairs_pwc_join.drop(OD_pairs_pwc_join[OD_pairs_pwc_join['flag'] == 'True'].in
 # edit to .iloc[0:1000] to make smaller data
 sample_df = OD_pairs_pwc_join
    
-#%%
-# progress = 0
-# start_counter = 0
-# end_counter = round(OD_pairs_pwc_join.shape[0] - 1)
-
-# while end_counter < OD_pairs_pwc_join.shape[0]:
-#     sample_df = OD_pairs_pwc_join.iloc[start_counter: end_counter]
-#     OD_pairs_df = pd.DataFrame(sample_df, columns =['Origins', 'Destinations'])
-#     OD_pairs = OD_pairs_df.values.tolist()
-#     OD_Origins = OD_pairs_df['Origins']
-#     OD_Destinations = OD_pairs_df['Destinations']
-#     OD_Origins_Arrary = OD_Origins.to_numpy()
-#     OD_Destinations_Arrary = OD_Destinations.to_numpy()
-#     # find all routes and all route distances
-#     routes = []
-#     distances = []
-
-#     for a,b in OD_pairs:
-#         route = edges_pdna.shortest_paths(OD_Origins_Arrary,OD_Destinations_Arrary)
-#         routes.append(route)
-#     edges['route_pairs'] = edges['node_start'].astype(str) + ',' + edges['node_end'].astype(str)
-#     # create dataframe of pairs at each end of a edge
-#     route_pairs = []
-
-#     # loop through all routes (as a list) to store all the pair values
-#     for route in route:
-#         for i in range(len(route) -1 ):
-#             temp = str(route[i]) + "," + str(route[i+1])
-#             route_pairs.append(temp)
-#     routes_df = pd.DataFrame({'route_pairs':route_pairs})
-#     progress = end_counter / round(OD_pairs_pwc_join.shape[0]) 
-#     print(progress, "% processed")
-#     print(end_counter)
-#     start_counter = start_counter + round(OD_pairs_pwc_join.shape[0])
-#     end_counter = end_counter + round(OD_pairs_pwc_join.shape[0])
 
 #%%
 
