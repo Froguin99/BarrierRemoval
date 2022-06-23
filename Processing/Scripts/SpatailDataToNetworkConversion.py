@@ -170,7 +170,8 @@ OD_Route_df = route_df.join(OD_pairs_df)
 #%%
 
 joined_OD_Matrix = QGIS_OD_Matrix.join(OD_Route_df)
-
+joined_OD_Matrix = joined_OD_Matrix[joined_OD_Matrix.total_cost !=0]
+joined_OD_Matrix['routes_string'] = joined_OD_Matrix['Routes'].agg(lambda x: ','.join(map(str, x)))
 #%%
 
 # ALL CODE BEYOND THIS POINT IS STILL VERY MUCH A WORK IN PROGRESS
@@ -194,8 +195,7 @@ counter = 0
 
 for x in joined_OD_Matrix.groupby('origin_id'):
     lastNode = joined_OD_Matrix['Destinations']
-    
-    # if lastNode == nodeinnextroute:
+    if joined_OD_Matrix['Destinations'].isin[Routes]
      #   remove row
     # elif lastNode == lastNode:
      #   compare network distance

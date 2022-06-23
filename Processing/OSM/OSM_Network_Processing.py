@@ -7,7 +7,7 @@ import osmnx as ox
 from matplotlib import pyplot as plt
 
 #%%
-bike_graph = ox.graph_from_place('Tyne and Wear, United Kingdom', network_type="bike",)
+bike_graph = ox.graph_from_place('Newcastle, United Kingdom', network_type="bike",)
 
 
 #%%

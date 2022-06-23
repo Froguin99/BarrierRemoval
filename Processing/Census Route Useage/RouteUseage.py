@@ -88,103 +88,136 @@ row_num = 1
 for startID in OD_pairs_pwc_join['Origins']:
     if OD_pairs_pwc_join.iloc[row_num,startPos] == '0':
         OD_pairs_pwc_join.at[row_num,'flag'] = 'True'
+        OD_pairs_pwc_join.at[row_num,'trips'] = OD_pairs_pwc_join.iloc[row_num,startPos]
         row_num = row_num + 1
         startPos = startPos + 1
     else:
         OD_pairs_pwc_join.at[row_num,'flag'] = 'False'
+        OD_pairs_pwc_join.at[row_num,'trips'] = OD_pairs_pwc_join.iloc[row_num,startPos]
         row_num = row_num + 1
         startPos = startPos + 1
-    if startPos == (OD_pairs_pwc_join.shape[1]) - 2:
+    if startPos == (OD_pairs_pwc_join.shape[1]) - 3:
         startPos = 8
     if row_num == (OD_pairs_pwc_join.shape[0]) - 1:
         row_num = 0
 #%%
 
 # drop rows where the flag is true
-OD_pairs_pwc_join.drop(OD_pairs_pwc_join[OD_pairs_pwc_join['flag'] == 'True'].index, inplace=True)    
+OD_pairs_pwc_join.drop(OD_pairs_pwc_join[OD_pairs_pwc_join['flag'] == 'True'].index, inplace=True) 
+
 #%%
-progress = 0
-start_counter = 0
-end_counter = round(OD_pairs_pwc_join.shape[0] / 100)
 
-while end_counter < OD_pairs_pwc_join.shape[0]:
-    sample_df = OD_pairs_pwc_join.iloc[start_counter: end_counter]
-    OD_pairs_df = pd.DataFrame(sample_df, columns =['Origins', 'Destinations'])
-    OD_pairs = OD_pairs_df.values.tolist()
-    OD_Origins = OD_pairs_df['Origins']
-    OD_Destinations = OD_pairs_df['Destinations']
-    OD_Origins_Arrary = OD_Origins.to_numpy()
-    OD_Destinations_Arrary = OD_Destinations.to_numpy()
-    # find all routes and all route distances 
-    routes = []
-    distances = []
+# edit to .iloc[0:1000] to make smaller data
+sample_df = OD_pairs_pwc_join
+   
+#%%
+# progress = 0
+# start_counter = 0
+# end_counter = round(OD_pairs_pwc_join.shape[0] - 1)
 
-    for a,b in OD_pairs:
-        route = edges_pdna.shortest_paths(OD_Origins_Arrary,OD_Destinations_Arrary)
-        routes.append(route)
-    edges['route_pairs'] = edges['node_start'].astype(str) + ',' + edges['node_end'].astype(str)
-    # create dataframe of pairs at each end of a edge
-    route_pairs = []
+# while end_counter < OD_pairs_pwc_join.shape[0]:
+#     sample_df = OD_pairs_pwc_join.iloc[start_counter: end_counter]
+#     OD_pairs_df = pd.DataFrame(sample_df, columns =['Origins', 'Destinations'])
+#     OD_pairs = OD_pairs_df.values.tolist()
+#     OD_Origins = OD_pairs_df['Origins']
+#     OD_Destinations = OD_pairs_df['Destinations']
+#     OD_Origins_Arrary = OD_Origins.to_numpy()
+#     OD_Destinations_Arrary = OD_Destinations.to_numpy()
+#     # find all routes and all route distances
+#     routes = []
+#     distances = []
 
-    # loop through all routes (as a list) to store all the pair values
-    for route in route:
-        for i in range(len(route) -1 ):
-            temp = str(route[i]) + "," + str(route[i+1])
-            route_pairs.append(temp)
-    routes_df = pd.DataFrame({'route_pairs':route_pairs})
-    progress = end_counter / round(OD_pairs_pwc_join.shape[0]) 
-    print(progress, "% processed")
-    print(end_counter)
-    start_counter = start_counter + round(OD_pairs_pwc_join.shape[0] / 100)
-    end_counter = end_counter + round(OD_pairs_pwc_join.shape[0] / 100)
+#     for a,b in OD_pairs:
+#         route = edges_pdna.shortest_paths(OD_Origins_Arrary,OD_Destinations_Arrary)
+#         routes.append(route)
+#     edges['route_pairs'] = edges['node_start'].astype(str) + ',' + edges['node_end'].astype(str)
+#     # create dataframe of pairs at each end of a edge
+#     route_pairs = []
 
-# #%%
+#     # loop through all routes (as a list) to store all the pair values
+#     for route in route:
+#         for i in range(len(route) -1 ):
+#             temp = str(route[i]) + "," + str(route[i+1])
+#             route_pairs.append(temp)
+#     routes_df = pd.DataFrame({'route_pairs':route_pairs})
+#     progress = end_counter / round(OD_pairs_pwc_join.shape[0]) 
+#     print(progress, "% processed")
+#     print(end_counter)
+#     start_counter = start_counter + round(OD_pairs_pwc_join.shape[0])
+#     end_counter = end_counter + round(OD_pairs_pwc_join.shape[0])
 
-# # reconstruct OD pairs 
+#%%
+
+# duplicate rows based on the number of trips made
+sample_df = sample_df.dropna(axis=0)
+sample_df = sample_df.loc[sample_df.index.repeat(sample_df['trips'])]
 
 
-# # split into two dataframes
-# OD_pairs_df = pd.DataFrame(sample_df, columns =['Origins', 'Destinations'])
-# OD_pairs = OD_pairs_df.values.tolist()
-# OD_Origins = OD_pairs_df['Origins']
-# OD_Destinations = OD_pairs_df['Destinations']
-# OD_Origins_Arrary = OD_Origins.to_numpy()
-# OD_Destinations_Arrary = OD_Destinations.to_numpy()
-# #%%
-# # find all routes and all route distances 
-# routes = []
-# distances = []
+#%%
 
-# for a,b in OD_pairs:
-#     route = edges_pdna.shortest_paths(OD_Origins_Arrary,OD_Destinations_Arrary)
-#     routes.append(route)
-# #%%
+# reconstruct OD pairs 
 
-# # create column of combined pairs
-# edges['route_pairs'] = edges['node_start'].astype(str) + ',' + edges['node_end'].astype(str)
-# #%%
 
-# # create dataframe of pairs at each end of a edge
-# route_pairs = []
+# split into two dataframes
+OD_pairs_df = pd.DataFrame(sample_df, columns =['Origins', 'Destinations'])
+OD_pairs = OD_pairs_df.values.tolist()
+OD_Origins = OD_pairs_df['Origins']
+OD_Destinations = OD_pairs_df['Destinations']
+OD_Origins_Arrary = OD_Origins.to_numpy()
+OD_Destinations_Arrary = OD_Destinations.to_numpy()
+#%%
+# find all routes and all route distances 
+routes = []
+distances = []
 
-# # loop through all routes (as a list) to store all the pair values
-# for route in route:
-#     for i in range(len(route) -1 ):
-#         temp = str(route[i]) + "," + str(route[i+1])
-#         route_pairs.append(temp)
-# #%%
-# # converting list into dataframe for comparsion between route pairs and egdes
-# routes_df = pd.DataFrame({'route_pairs':route_pairs})
+#%%
+for a,b in OD_pairs:
+    route = edges_pdna.shortest_paths(OD_Origins_Arrary,OD_Destinations_Arrary)
+    #routes.append(route)
+#%%
+
+# create column of combined pairs
+edges['route_pairs'] = edges['node_start'].astype(str) + ',' + edges['node_end'].astype(str)
+#%%
+
+# create dataframe of pairs at each end of a edge
+route_pairs = []
+
+# loop through all routes (as a list) to store all the pair values
+for route in route:
+    for i in range(len(route) -1 ):
+        temp = str(route[i]) + "," + str(route[i+1])
+        route_pairs.append(temp)
+#%%
+# converting list into dataframe for comparsion between route pairs and egdes
+routes_df = pd.DataFrame({'route_pairs':route_pairs})
+
+
+#%%
+routes_df_reversed = routes_df.route_pairs.str.split(pat=',',expand=True)
+routes_df_reversed = routes_df_reversed.rename(columns= {0:'node_start',1:'node_end'})
+routes_df_reversed = routes_df_reversed['node_end'] + ',' + routes_df_reversed['node_start']
+routes_df_reversed = routes_df_reversed.rename(str('route_pairs'), inplace=True)
+routes_df_reversed = routes_df_reversed.to_frame()
 #%%
 
 # calculate the number of passes through each edge
 passes_df = routes_df[routes_df['route_pairs'].isin(edges['route_pairs'])]
 passes_df.groupby("route_pairs").size().sort_values(ascending=False)
 passes_output_df = passes_df.groupby("route_pairs").size().reset_index(name="Passes")
+
+#%%
+
+# calculate the number of passes through each edge
+passes_df_reversed = routes_df_reversed[routes_df_reversed['route_pairs'].isin(edges['route_pairs'])]
+passes_df_reversed.groupby("route_pairs").size().sort_values(ascending=False)
+passes_output_df_reversed = passes_df_reversed.groupby("route_pairs").size().reset_index(name="Passes_reversed")
 #%%
 
 # join the passes dataframe to the edges dataframe
 edges = pd.merge(edges, passes_output_df, on ='route_pairs', how = 'left').fillna(0)
+edges = pd.merge(edges, passes_output_df_reversed, on ='route_pairs', how = 'left').fillna(0)
+edges['total_passes'] = edges['Passes'] + edges['Passes_reversed']
 #%%
 
 edges.to_file(r'C:\Users\b8008458\Documents\2021_2022\Scratch Space\BikeNetwork\bike_network_routeuseage.shp')
@@ -192,4 +225,4 @@ edges.to_file(r'C:\Users\b8008458\Documents\2021_2022\Scratch Space\BikeNetwork\
 
 end = time.time()
 
-print("Execution time is:", end-start)
+print("Execution time is:", end-start, "seconds")

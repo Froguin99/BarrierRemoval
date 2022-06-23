@@ -6,7 +6,11 @@ import networkx as nx
 import osmnx as ox
 from matplotlib import pyplot as plt
 import pandana as pdna
+import time
+#%%
 
+# start timer
+start = time.time()
 #%%
 
 # read in edges
@@ -21,7 +25,7 @@ G = momepy.gdf_to_nx(OSM_edges, approach="primal", length="cost")
 # calculate betweeness_centrality
 
 # use k = 500 for faster running
-bc = nx.edge_betweenness_centrality(G, weight='cost', seed=23)
+bc = nx.edge_betweenness_centrality(G, k = 10000, weight='cost', seed=23)
 bc = pd.DataFrame(bc.items())
 
 #%%
@@ -44,3 +48,8 @@ OSM_edges.drop([0,'edge_index'], axis=1, inplace=True)
 #%%
 
 OSM_edges.to_file(r'C:\Users\b8008458\Documents\2021_2022\Scratch Space\BikeNetwork\bike_network_costs_bc.shp')
+
+#%%
+end = time.time()
+
+print("Execution time is:", end-start, "seconds")
