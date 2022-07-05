@@ -7,7 +7,7 @@ import osmnx as ox
 from matplotlib import pyplot as plt
 
 #%%
-bike_graph = ox.graph_from_place('Newcastle, United Kingdom', network_type="bike",)
+bike_graph = ox.graph_from_place('Newcastle, United Kingdom', network_type="all",clean_periphery=True)
 
 
 #%%
@@ -25,39 +25,50 @@ edges['highway'] = edges['highway'].str.replace("'"," ")
 edges['cost'] = edges['length']
 
 #%%
-edges.loc[edges['highway']== "cycleway", 'cost'] = edges['cost'] * 0.25
-edges.loc[edges['highway']== "bridleway", 'cost'] = edges['cost'] * 0.25
-edges.loc[edges['highway']== "living_street", 'cost'] = edges['cost'] * 0.5
-edges.loc[edges['highway']== "path", 'cost'] = edges['cost'] * 0.25
-edges.loc[edges['highway']== "pedestrian", 'cost'] = edges['cost'] * 0.25
-edges.loc[edges['highway']== "[\'bridleway','service\']", 'cost'] = edges['cost'] * 0.25
-edges.loc[edges['highway']== "[\'cycleway','path\']", 'cost'] = edges['cost'] * 0.25
-edges.loc[edges['highway']== "[\'cycleway','track\']", 'cost'] = edges['cost'] * 0.25
-edges.loc[edges['highway']== "[\'cycleway','unclassified\']", 'cost'] = edges['cost'] * 0.25
-edges.loc[edges['highway']== "[\'living_street','pedestrian\']", 'cost'] = edges['cost'] * 0.5
-edges.loc[edges['highway']== "[\'living_street','service\']", 'cost'] = edges['cost'] * 0.5
-edges.loc[edges['highway']== "[\'residential','bridleway\']", 'cost'] = edges['cost'] * 0.25
-edges.loc[edges['highway']== "[\'residential','cycleway\']", 'cost'] = edges['cost'] * 0.25
-edges.loc[edges['highway']== "[\'residential','path\']", 'cost'] = edges['cost'] * 0.25
-edges.loc[edges['highway']== "[\'residential','living_street\']", 'cost'] = edges['cost'] * 0.5
-edges.loc[edges['highway']== "[\'residential','path\']", 'cost'] = edges['cost'] * 0.25
-edges.loc[edges['highway']== "[\'residential','pedestrian\']", 'cost'] = edges['cost'] * 0.25
-edges.loc[edges['highway']== "[\'residential','service\']", 'cost'] = edges['cost'] * 0.25
-edges.loc[edges['highway']== "[\'residential','track','path\']", 'cost'] = edges['cost'] * 0.25
-edges.loc[edges['highway']== "[\'residential','track\']", 'cost'] = edges['cost'] * 0.25
-edges.loc[edges['highway']== "[\'residential','unclassified\']", 'cost'] = edges['cost'] * 0.25
-edges.loc[edges['highway']== "[\'service','cycleway\']", 'cost'] = edges['cost'] * 0.25
-edges.loc[edges['highway']== "[\'service','path\']", 'cost'] = edges['cost'] * 0.25
-edges.loc[edges['highway']== "[\'service','pedestrian\']", 'cost'] = edges['cost'] * 0.25
-edges.loc[edges['highway']== "[\'service','track\']", 'cost'] = edges['cost'] * 0.25
-edges.loc[edges['highway']== "[\'service','unclassified\']", 'cost'] = edges['cost'] * 0.25
-edges.loc[edges['highway']== "[\'service','cycleway\']", 'cost'] = edges['cost'] * 0.25
 
+# weight edges
+edges.loc[edges['highway']== "cycleway", 'cost'] = edges['cost'] * 0.4
+edges.loc[edges['highway']== "bridleway", 'cost'] = edges['cost'] * 0.4
+edges.loc[edges['highway']== "living_street", 'cost'] = edges['cost'] * 0.6
+edges.loc[edges['highway']== "path", 'cost'] = edges['cost'] * 0.4
+edges.loc[edges['highway']== "pedestrian", 'cost'] = edges['cost'] * 0.4
+edges.loc[edges['highway']== "[\'bridleway','service\']", 'cost'] = edges['cost'] * 0.4
+edges.loc[edges['highway']== "[\'cycleway','path\']", 'cost'] = edges['cost'] * 0.4
+edges.loc[edges['highway']== "[\'cycleway','track\']", 'cost'] = edges['cost'] * 0.4
+edges.loc[edges['highway']== "[\'cycleway','unclassified\']", 'cost'] = edges['cost'] * 0.4
+edges.loc[edges['highway']== "[\'living_street','pedestrian\']", 'cost'] = edges['cost'] * 0.6
+edges.loc[edges['highway']== "[\'living_street','service\']", 'cost'] = edges['cost'] * 0.6
+edges.loc[edges['highway']== "[\'residential','bridleway\']", 'cost'] = edges['cost'] * 0.4
+edges.loc[edges['highway']== "[\'residential','cycleway\']", 'cost'] = edges['cost'] * 0.4
+edges.loc[edges['highway']== "[\'residential','path\']", 'cost'] = edges['cost'] * 0.4
+edges.loc[edges['highway']== "[\'residential','living_street\']", 'cost'] = edges['cost'] * 0.6
+edges.loc[edges['highway']== "[\'residential','path\']", 'cost'] = edges['cost'] * 0.4
+edges.loc[edges['highway']== "[\'residential','pedestrian\']", 'cost'] = edges['cost'] * 0.4
+edges.loc[edges['highway']== "[\'residential','service\']", 'cost'] = edges['cost'] * 0.4
+edges.loc[edges['highway']== "[\'residential','track','path\']", 'cost'] = edges['cost'] * 0.4
+edges.loc[edges['highway']== "[\'residential','track\']", 'cost'] = edges['cost'] * 0.4
+edges.loc[edges['highway']== "[\'residential','unclassified\']", 'cost'] = edges['cost'] * 0.4
+edges.loc[edges['highway']== "[\'service','cycleway\']", 'cost'] = edges['cost'] * 0.4
+edges.loc[edges['highway']== "[\'service','path\']", 'cost'] = edges['cost'] * 0.4
+edges.loc[edges['highway']== "[\'service','pedestrian\']", 'cost'] = edges['cost'] * 0.4
+edges.loc[edges['highway']== "[\'service','track\']", 'cost'] = edges['cost'] * 0.4
+edges.loc[edges['highway']== "[\'service','unclassified\']", 'cost'] = edges['cost'] * 0.4
+edges.loc[edges['highway']== "[\'service','cycleway\']", 'cost'] = edges['cost'] * 0.4
+
+# increase weights on unuseable roads
+edges.loc[edges['highway']== "trunk", 'cost'] = edges['cost'] * 10
+edges.loc[edges['highway']== "trunk_link", 'cost'] = edges['cost'] * 10
+edges.loc[edges['highway']== "service", 'cost'] = edges['cost'] * 10
+edges.loc[edges['highway']== "primary", 'cost'] = edges['cost'] * 10
+edges.loc[edges['highway']== "secondary", 'cost'] = edges['cost'] * 10
+edges.loc[edges['highway']== "tertiary", 'cost'] = edges['cost'] * 10
+edges.loc[edges['highway']== "unclassified", 'cost'] = edges['cost'] * 10
+edges.loc[edges['highway']== "motorway", 'cost'] = edges['cost'] * 100
+edges.loc[edges['highway']== "motorway_link", 'cost'] = edges['cost'] * 100
 
 #%%
 
-edges = edges[edges.highway != 'trunk']
-edges = edges[edges.highway != 'trunk_link']
+
 
 
 
