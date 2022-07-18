@@ -17,11 +17,17 @@ import geopandas as gpd
 
 
 # data can be found under ...Github\BarrierRemoval\Data\Test Data\Python\FullBarrierLayer.shp
-barriers = gpd.read_file(r"C:\Users\b8008458\Documents\2021_2022\Scratch Space\FullBarrierLayer.shp")
+barriers = gpd.read_file(r"C:\Users\b8008458\Documents\2021_2022\Scratch Space\York\Barriers\YorkBarriers.shp")
+
+
+
+# Import OD Matrix from QGIS
 
 
 # data can be found under ...Github\BarrierRemoval\Data\Test Data\Python\ODMatrix.shp
-QGIS_OD_Matrix = gpd.read_file(r"C:\Users\b8008458\Documents\2021_2022\Scratch Space\NetworkTesting\ODMatrix.shp")
+QGIS_OD_Matrix = gpd.read_file(r"C:\Users\b8008458\Documents\2021_2022\Scratch Space\York\ODMatrix\YorkODMatrix.shp")
+
+
 
 
 #%%
@@ -41,12 +47,16 @@ min_network_distances_df = min_network_distances_df.to_frame().reset_index()
 #%%
 
 # join minimum distances to barriers
+barriers['origin_id'] = barriers['globalid']
 
-barriers['minimum_gain'] = min_network_distances_df['total_cost']
+join = barriers.merge(min_network_distances_df, on = 'origin_id', how='left', suffixes=('', '_y'))
+join.drop(join.filter(regex='_y$').columns, axis=1, inplace=True)
+
+
 
 
 #%%
 
 # export barriers
 
-barriers.to_file(r'C:\Users\b8008458\Documents\2021_2022\Scratch Space\FullBarrierLayer.shp')
+join.to_file(r"C:\Users\b8008458\Documents\2021_2022\Scratch Space\York\Barriers\YorkBarriers.shp")

@@ -17,11 +17,11 @@ start = time.time()
 #%%
 
 # read in edges
-OSM_edges = gpd.read_file(r'C:\Users\b8008458\Documents\2021_2022\Scratch Space\BikeNetwork\bike_network_costs.shp')
+OSM_edges = gpd.read_file(r'C:\Users\b8008458\Documents\2021_2022\Scratch Space\York\Bike Network\bike_network_costs.shp')
 
 
 # read in population weighted centeroids
-pwc = gpd.read_file(r'C:\Users\b8008458\Documents\2021_2022\Scratch Space\NewcastleCenteroids\LSOA_ODJOINED.gpkg')
+pwc = gpd.read_file(r'C:\Users\b8008458\Documents\2021_2022\Scratch Space\York\Centriods\YorkLSOAsReproSingle.gpkg')
 #%%
 
 # rename column headers
@@ -136,11 +136,14 @@ routes = []
 distances = []
 
 #%%
+
+print("Starting OD Processing...")
 for a,b in OD_pairs:
     route = edges_pdna.shortest_paths(OD_Origins_Arrary,OD_Destinations_Arrary)
     #routes.append(route)
 #%%
 
+print("Finished OD Processing")
 # create column of combined pairs
 edges['route_pairs'] = edges['node_start'].astype(str) + ',' + edges['node_end'].astype(str)
 #%%
@@ -185,7 +188,7 @@ edges = pd.merge(edges, passes_output_df_reversed, on ='route_pairs', how = 'lef
 edges['total_passes'] = edges['Passes'] + edges['Passes_reversed']
 #%%
 
-edges.to_file(r'C:\Users\b8008458\Documents\2021_2022\Scratch Space\BikeNetwork\bike_network_routeuseage.shp')
+edges.to_file(r'C:\Users\b8008458\Documents\2021_2022\Scratch Space\York\Bike Network\bike_network_routeuseage.shp')
 
 
 end = time.time()
