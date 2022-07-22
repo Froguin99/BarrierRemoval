@@ -13,24 +13,29 @@ import geopandas as gpd
 
 
 # data can be found under ...Github\BarrierRemoval\Data\Test Data\Python\FullBarrierLayer.shp
-barriersBC = gpd.read_file(r"C:\Users\b8008458\Documents\2021_2022\Scratch Space\TestResults\barriersBCJoin.shp")
-barriersRU = gpd.read_file(r"C:\Users\b8008458\Documents\2021_2022\Scratch Space\TestResults\barriersRouteUseageJoin.shp")
+barriersBC = gpd.read_file(r"C:\Users\b8008458\Documents\2021_2022\Scratch Space\York\Spatail Joins\BCJoin.shp")
+barriersRU = gpd.read_file(r"C:\Users\b8008458\Documents\2021_2022\Scratch Space\York\Spatail Joins\RouteUseage.shp")
+barriersIMD = gpd.read_file(r"C:\Users\b8008458\Documents\2021_2022\Scratch Space\York\Spatail Joins\IDMandCarsJoin.shp")
 
 #%%
 
 barriersBC.drop(['cost','to', 'from_', 'length','v','u', 'oneway'], axis=1, inplace=True)
 barriersRU.drop(['cost','to', 'from_', 'length','v','u', 'oneway'], axis=1, inplace=True)
+#barriersIMD.drop(['cost','to', 'from_', 'length','v','u', 'oneway'], axis=1, inplace=True)
 
 
 #%%
 
-join = barriersRU.merge(barriersBC, on = 'objectid', how='left', suffixes=('', '_y'))
-join.drop(join.filter(regex='_y$').columns, axis=1, inplace=True)
+join1 = barriersRU.merge(barriersBC, on = 'globalid', how='left', suffixes=('', '_y'))
+join1.drop(join1.filter(regex='_y$').columns, axis=1, inplace=True)
 
-join.set_crs(crs='EPSG:27700', allow_override=True)
+join2 = join1.merge(barriersIMD, on = 'globalid', how='left', suffixes=('', '_y'))
+join2.drop(join2.filter(regex='_y$').columns, axis=1, inplace=True)
+
+join2.set_crs(crs='EPSG:27700', allow_override=True)
 #%%
 
-join = gpd.GeoDataFrame(join)
+join2 = gpd.GeoDataFrame(join2)
 
 
-join.to_file(r"C:\Users\b8008458\Documents\2021_2022\Scratch Space\TestResults\barriersJoin.shp")
+join2.to_file(r"C:\Users\b8008458\Documents\2021_2022\Scratch Space\York\Spatail Joins\barriersJoin.shp")

@@ -12,12 +12,13 @@ import geopandas as gpd
 #%%
 
 # data can be found under ...Github\BarrierRemoval\Data\Test Data\Python\FullBarrierLayer.shp
-barriers = gpd.read_file(r"C:\Users\b8008458\Documents\2021_2022\Scratch Space\TestResults\barriersJoinGPKG.gpkg")
+barriers = gpd.read_file(r"C:\Users\b8008458\Documents\2021_2022\Scratch Space\York\Spatail Joins\barriersJoin.shp")
+
 
 #%%
 
 # normliase all mertics
-barrier_copy = barriers[['barriersBCJoin_Betweennes','total_pass', 'minimum_ga','Critical_1']]
+barrier_copy = barriers[['Betweennes','total_pass', 'min_gain','Critical_1']]
 
 # inverse weighting for barriers as wider barriers are better barriers :)
 barrier_copy['Critical_1'] *= -1
@@ -33,13 +34,13 @@ plt.show()
 
 #%%
 
-barrier_copy.plot(x='barriersBCJoin_Betweennes', y='total_pass', kind='scatter', c='cornflowerblue', xlabel='Edge Betweenness', ylabel='Edge passes')
+barrier_copy.plot(x='Betweennes', y='total_pass', kind='scatter', c='cornflowerblue', xlabel='Edge Betweenness', ylabel='Edge passes')
 
 
 #%%
 
 # FINAL SCORING
-cols = ['barriersBCJoin_Betweennes','total_pass', 'minimum_ga','Critical_1']
+cols = ['Betweennes','total_pass', 'min_gain','Critical_1']
 
 barrier_copy['Overall_Score'] = barrier_copy[cols].sum(axis=1)
 
@@ -62,4 +63,4 @@ join.drop(join.filter(regex='_y$').columns, axis=1, inplace=True)
 
 #%%
 
-join.to_file(r"C:\Users\b8008458\Documents\2021_2022\Scratch Space\TestResults\barriersScored.shp")
+join.to_file(r"C:\Users\b8008458\Documents\2021_2022\Scratch Space\York\Spatail Joins\YorkBarriersScored.shp")
