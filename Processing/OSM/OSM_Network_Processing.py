@@ -9,6 +9,7 @@ from matplotlib import pyplot as plt
 #%%
 bike_graph = ox.graph_from_place('York, United Kingdom', network_type="all",clean_periphery=True)
 
+#%%
 
 #%%
 
