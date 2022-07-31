@@ -26,7 +26,7 @@ G = momepy.gdf_to_nx(OSM_edges, approach="primal", length="cost")
 print("Starting calculation")
 
 # use k = 500 for faster running
-bc = nx.edge_betweenness_centrality(G, k = 25000, weight='cost', seed=23)
+bc = nx.edge_betweenness_centrality(G, k = 25000, weight='cost', seed=23, normalized = False)
 bc = pd.DataFrame(bc.items())
 
 #%%
