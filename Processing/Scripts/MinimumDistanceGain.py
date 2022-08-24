@@ -17,7 +17,7 @@ import geopandas as gpd
 
 
 # data can be found under ...Github\BarrierRemoval\Data\Test Data\Python\FullBarrierLayer.shp
-barriers = gpd.read_file(r"C:\Users\b8008458\Documents\2021_2022\Scratch Space\York\Barriers\YorkBarriers.shp")
+barriers = gpd.read_file(r"C:\Users\b8008458\OneDrive - Newcastle University\2021 to 2022\Dissertation\Github\BarrierRemoval\Study Areas\Pembrokeshire\Barriers\PembrokeBarriers.gpkg")
 
 
 
@@ -25,7 +25,7 @@ barriers = gpd.read_file(r"C:\Users\b8008458\Documents\2021_2022\Scratch Space\Y
 
 
 # data can be found under ...Github\BarrierRemoval\Data\Test Data\Python\ODMatrix.shp
-QGIS_OD_Matrix = gpd.read_file(r"C:\Users\b8008458\Documents\2021_2022\Scratch Space\York\ODMatrix\YorkODMatrix.shp")
+QGIS_OD_Matrix = gpd.read_file(r"C:\Users\b8008458\OneDrive - Newcastle University\2021 to 2022\Dissertation\Github\BarrierRemoval\Study Areas\Pembrokeshire\ODMatrix\PembrokeODMatrix.shp")
 
 
 
