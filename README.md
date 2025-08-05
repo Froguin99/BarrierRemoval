@@ -1,6 +1,6 @@
 # BarrierRemoval
 
-This repository contains all scripts and data relating to my masters of research (MRes) project. The project creates a decision support methodology to prioritise barrier removal on active travel networks. This github repository is still a work in progress, as certain aspects of the decsion support tool are still in progress. Any questions regarding the content, feel free to drop me an email at b8008458@Newcastle.ac.uk. The full MRes write-up can be found under the "Documents" folder. The full abstract can be found below:
+This repository contains all scripts and data relating to my research project on barrier removal. The project creates a decision support methodology to prioritise barrier removal on active travel networks. This github repository is still a work in progress, as certain aspects of the decsion support tool are still in progress. Any questions regarding the content, feel free to drop me an email at b8008458@Newcastle.ac.uk. The full MRes write-up can be found under the "Documents" folder. The full abstract can be found below:
 
 
 This thesis presents the development of an automated methodology to determine the removal priority of physical obstructions on active travel networks. Obstructions reduce accessibility on active travel networks, particularly for those with additional mobility requirements such as wheelchairs or adapted cycles. To provide decision makers with a tool to identify where the best short-term gains are located, a novel methodology for scoring obstructions is developed.
